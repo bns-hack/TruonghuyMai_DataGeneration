@@ -1,0 +1,10 @@
+version: '3.8'
+
+backend:
+  build:
+    context: ./backend
+    dockerfile: .docker/Dockerfile
+  ports:
+    - "8080:5000"
+  environment:
+    - ALLOWED_ORIGIN=${FRONTEND_URL}
