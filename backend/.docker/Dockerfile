@@ -1,5 +1,10 @@
 FROM python:3.10-bullseye
 
+USER 0
+RUN mkdir /.cache && chmod 777 /.cache
+
+WORKDIR /app
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
