@@ -3,11 +3,11 @@ services:
   backend:
     container_name: DataGeneration
     build:
-      context: ./../
-      dockerfile: backend/.docker/Dockerfile
-    environment:
-      - ALLOWED_ORIGIN=${FRONTEND_URL:-http://localhost}
-    volumes:
-      - ./backend:/app
+      context: ./backend
+      dockerfile: .docker/Dockerfile
     ports:
       - "8080:5000"
+    environment:
+      - ALLOWED_ORIGIN=${FRONTEND_URL}
+    volumes:
+      - ./backend:/app
