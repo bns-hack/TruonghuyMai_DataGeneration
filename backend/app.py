@@ -33,6 +33,8 @@
 #print(synthetic_data)
 
 
+from ctgan import CTGAN
+import pandas as pd
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
