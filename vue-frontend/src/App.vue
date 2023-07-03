@@ -5,16 +5,26 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="90" height="90" />
+    <img alt="Vue logo" class="logo" src="https://cdn.freebiesupply.com/logos/large/2x/python-5-logo-svg-vector.svg" width="90" height="90" />
 
-    <div class="wrapper">
+    <img alt="Vue logo" class="logo" src="https://flask-es.readthedocs.io/_static/flask-vertical.png" width="90" height="90" />
+
+    <div class="wrapper">    
+
       <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/demo">Data Generation Demo</RouterLink>
+
       </nav>
     </div>
+
+
+
+
   </header>
 
   <RouterView />
