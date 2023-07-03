@@ -16,7 +16,6 @@ services:
     build: 
       context: ./vue-frontend
       dockerfile: .docker/Dockerfile
-      target: ${FRONTEND_BUILD_TARGET:-dev}
     ports:
       - "80:80"
     environment:
