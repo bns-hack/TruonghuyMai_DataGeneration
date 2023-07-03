@@ -11,3 +11,14 @@ services:
       - ALLOWED_ORIGIN=${FRONTEND_URL}
     volumes:
       - ./backend:/app
+  frontend:
+    container_name: vue-js
+    build: 
+      context: ./vue-frontend
+      dockerfile: .docker/Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - ALLOWED_ORIGIN=${FRONTEND_URL}
+    volumes:
+      - ./vue-frontend:/app
