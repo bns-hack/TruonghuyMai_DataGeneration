@@ -34,7 +34,9 @@
 
 
 import pandas as pd
-
+import base64
+import time
+import threading
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
@@ -45,25 +47,15 @@ from flask_cors import CORS
 def to_json(obj):
     return json.dumps(obj, default=lambda obj: obj.__dict__)
 
-allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost:*")
+allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost")
 
 app = Flask(__name__)
+
+
 CORS(app, resources={r"/*": {"origins": allowed_origin}})
 
-# enable debugging mode
-app.config["DEBUG"] = True
 
-# Upload folder
-UPLOAD_FOLDER = 'staticfiles'
-app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
-meta = ""
-data = ""
-# Root URL
-@app.route('/')
-def index():
-     # Set The upload HTML template '\templates\index.html'
-    return render_template('index.html')
 
 
 
@@ -100,5 +92,5 @@ def uploadFiles():
 
 
 
-if (__name__ == "__main__"):
-     app.run(port = 5000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
