@@ -1,7 +1,6 @@
 kind: Environment
-name: data
+name: Data Generation
 type: primary
-urlHandle: 73rjfa
 components:
     -
         kind: Application
