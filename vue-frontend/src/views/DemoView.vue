@@ -1,6 +1,11 @@
 
 <template>
   <main>
+<div class="endpoint-edit">
+  <p class="title">Current Endpoint API URL : {{ endpoint }}</p> 
+  <input v-model="endpoint" placeholder="edit me" />
+</div>
+
   <div class="file-upload">
     <input class="title" accept=".csv"  type="file" @change="onFileChange" />
     <div v-if="progress" class="progess-bar" :style="{'width': progress}">{{progress}}</div>
@@ -13,7 +18,7 @@
 
   <span class="title" >Result Synthesize Data is Here:</span>
   <p style="white-space: pre-line;">{{ message }}</p>
-  <textarea  id="myTextArea" cols=50 rows=20 disabled v-model="this.data" placeholder=""></textarea>
+  <textarea  id="myTextArea" cols=50 rows=15 disabled v-model="this.data" placeholder=""></textarea>
 
     <button :disabled="!this.finish" @click="downloadJSON" class="upload-button" >Download JSON</button>
     <button :disabled="!this.finish" @click="downloadCSV" class="upload-button" >Download CSV</button>
@@ -36,7 +41,8 @@
               progress: 0,
               data: "",
               filename:"",
-              finish:""
+              finish:"",
+              endpoint:"http://127.0.0.1:5000"
           };
       },
       methods: {
@@ -63,7 +69,7 @@
               };
               // sending file to backend
               axios
-              .post("http://127.0.0.1:5000/upload", formData, customHeader,{
+              .post( this.endpoint+"/upload", formData, customHeader,{
                   onUploadProgress: ProgressEvent => {
                   let progress =
                       Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
@@ -124,6 +130,20 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .file-upload {
+  box-shadow: 2px 2px 9px 2px #ccc;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1rem;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+}
+
+.endpoint-edit {
   box-shadow: 2px 2px 9px 2px #ccc;
   border-radius: 1rem;
   padding: 2rem;
