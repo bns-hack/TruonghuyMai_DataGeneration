@@ -1,7 +1,7 @@
-name: Synthetic Data Generation with Vue.js and Python
-description: This is a basic example for creating a new environment with Vue.js as frontend and Python as backend. The example app contain a simple synthetic tabular data generation. Upload your data in csv format and generate new data.
-tags: [ vuejs, python, flask ]
-icons: [ vuejs, python, flask ]
+name: Synthetic Data Generation with Vue.js + Python + Mongo
+description: This is a basic example for creating a new environment with Vue.js as frontend, Python as backend, and MongoDB as Database. The example app contain a simple synthetic tabular data generation. Upload your data in csv format and generate new data.
+tags: [ vuejs, python, flask, typescript, mongo ]
+icons: [ vuejs, python, flask, typescript, mongo ]
 stack:
   packages:
     - name: Python
@@ -10,4 +10,8 @@ stack:
       version: '2.3.2'
     - name: Vue.js
       version: '3.3.4'
+    - name: Typescript
+      version: '5.0.3'
+    - name: MongoDB
+      version: '4.4'
 discoverable: true

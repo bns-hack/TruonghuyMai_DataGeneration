@@ -40,3 +40,22 @@ components:
                 hostname: 'backend-{{ env.base_domain }}'
                 path: /
                 servicePort: 8080
+        
+        kind: Database
+        name: mongo
+        dockerCompose:
+            environment:
+                MONGO_INITDB_DATABASE: books
+            image: 'mongo:4.4'
+            ports:
+                - '27017:27017'
+        volumes:
+            -
+                name: data-volume
+                mount: /data/db
+                subPath: ''
+volumes:
+    -
+        name: data-volume
+        size: 1Gi
+        type: disk
