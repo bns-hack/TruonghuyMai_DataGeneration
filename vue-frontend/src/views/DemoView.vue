@@ -2,7 +2,7 @@
 <template>
   <main>
 <div class="endpoint-edit">
-  <p class="title">Current Endpoint API URL : {{ endpoint }}</p> 
+  <p class="title">Current Endpoint API URL : </p><p class="title2">{{endpoint}}</p> 
   <input v-model="endpoint" placeholder="edit me" />
 </div>
 
@@ -167,6 +167,13 @@
   width: 60%;
   margin: 0 auto;
   margin-top: 2rem;
+
+}
+
+.title{
+  font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+  font-size: 18px;
+  font-weight: 500;
 
 }
 

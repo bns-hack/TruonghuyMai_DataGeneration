@@ -1,0 +1,13 @@
+name: Synthetic Data Generation with Vue.js and Python
+description: This is a basic example for creating a new environment with Vue.js as frontend and Python as backend. The example app contain a simple synthetic tabular data generation. Upload your data in csv format and generate new data.
+tags: [ vue.js, python, flask ]
+icons: [ vue.js, python, flask ]
+stack:
+  packages:
+    - name: Python
+      version: '3.10'
+    - name: Flask
+      version: '2.3.2'
+    - name: Vue.js
+      version: '3.3.4'
+discoverable: true

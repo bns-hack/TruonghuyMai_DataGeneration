@@ -1,0 +1,43 @@
+kind: Environment
+name: data
+type: primary
+urlHandle: 73rjfa
+components:
+    -
+        kind: Application
+        name: app
+        gitRepo: 'https://github.com/TruonghuyMai/DataGeneration.git'
+        gitBranch: main
+        gitApplicationPath: vue-frontend
+        dockerCompose:
+            build:
+                context: ./vue-frontend
+                dockerfile: .docker/Dockerfile
+            environment:
+                API_URL: 'https://{{ components.backend.ingress.hosts[0] }}'
+            ports:
+                - '80:80'
+        hosts:
+            -
+                hostname: 'app-{{ env.base_domain }}'
+                path: /
+                servicePort: 80
+    -
+        kind: Application
+        name: backend
+        gitRepo: 'https://github.com/TruonghuyMai/DataGeneration.git'
+        gitBranch: main
+        gitApplicationPath: backend
+        dockerCompose:
+            build:
+                context: ./backend
+                dockerfile: .docker/Dockerfile
+            environment:
+                ALLOWED_ORIGIN: 'https://{{ components.app.ingress.hosts[0].hostname }}'
+            ports:
+                - '8080:5000'
+        hosts:
+            -
+                hostname: 'backend-{{ env.base_domain }}'
+                path: /
+                servicePort: 8080
