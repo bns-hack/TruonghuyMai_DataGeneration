@@ -112,7 +112,7 @@
                 document.body.removeChild(element); 
 
 
-            }
+            }  
            
 
         }
