@@ -1,6 +1,5 @@
 Flask==2.3.2
 Flask_Cors==4.0.0
 pandas==2.0.3
-numpy==1.23.3
-
-
+Requests==2.31.0
+sdv==1.2.0
