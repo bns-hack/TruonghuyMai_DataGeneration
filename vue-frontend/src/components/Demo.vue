@@ -2,7 +2,7 @@
     <div class="file-upload">
       <input class="title" accept=".csv"  type="file" @change="onFileChange" />
       <div v-if="progress" class="progess-bar" :style="{'width': progress}">{{progress}}</div>
-      <button @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile">Generate New Data</button>
+      <button v-show="recieved" @click="onUploadFile" class="upload-button">Generatesdfsd New Data</button>
 
     </div>
 
@@ -34,7 +34,8 @@
                 progress: 0,
                 data: "",
                 filename:"",
-                finish:""
+                finish:"",
+                recieved: false
             };
         },
         methods: {
@@ -67,6 +68,8 @@
                         Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
                         "%";
                     this.progress = progress;
+                    this.selectedFile = "";
+
                     }
                 })
                 .then(res => {
@@ -74,6 +77,7 @@
                     this.data = this.prettyPrint(res.data)
                     //prettyPrint(this.data)
                     this.finish = true;
+                    this.selectedFile = true;
                 })
                 .catch(err => {
                     console.log(err);

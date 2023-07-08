@@ -13,13 +13,14 @@ from flask_cors import CORS
 def to_json(obj):
     return json.dumps(obj, default=lambda obj: obj.__dict__)
 
-allowed_origin = os.environ.get("ALLOWED_ORIGIN", "http://localhost")
 
 app = Flask(__name__)
 
 
-CORS(app, resources={r"/*": {"origins": allowed_origin}})
 
+@app.route("/")
+def hello():
+  return "Hello"
 
 # Get the uploaded files
 @app.route("/upload", methods=['POST'])

@@ -9,7 +9,9 @@
   <div class="file-upload">
     <input class="title" accept=".csv"  type="file" @change="onFileChange" />
     <div v-if="progress" class="progess-bar" :style="{'width': progress}">{{progress}}</div>
-    <button @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile">Generate New Data</button>
+    <button v-if="this.received" @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile">Generate New Data</button>
+    <div v-if="!this.received" class="lds-dual-ring"> Generating</div>
+
 
   </div>
 
@@ -21,7 +23,6 @@
   <textarea  id="myTextArea" cols=50 rows=15 disabled v-model="this.data" placeholder=""></textarea>
 
     <button :disabled="!this.finish" @click="downloadJSON" class="upload-button" >Download JSON</button>
-    <button :disabled="!this.finish" @click="downloadCSV" class="upload-button" >Download CSV</button>
 
   </div>
   </main>
@@ -42,7 +43,8 @@
               data: "",
               filename:"",
               finish:"",
-              endpoint:"http://127.0.0.1:5000"
+              endpoint:"http://127.0.0.1:5000",
+              received:true
           };
       },
       methods: {
@@ -61,6 +63,9 @@
           onUploadFile() {
               const formData = new FormData();
               formData.append("file", this.selectedFile); // appending file
+              this.received = false;
+              console.log(this.received)
+
               const customHeader = {
                   headers: {
                   // Authorization: `Bearer ${getLocalStorageToken()}`,
@@ -82,6 +87,7 @@
                   this.data = this.prettyPrint(res.data)
                   //prettyPrint(this.data)
                   this.finish = true;
+                  this.received = true;
               })
               .catch(err => {
                   console.log(err);
@@ -309,6 +315,36 @@ button {
   background-color: #b3bcc4;
   cursor: no-drop;
 }
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+  font-size: 14px;
+  font-weight: 500;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #151618;
+  border-color: #151618 transparent #151618 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 @media (min-width: 1024px) {
     .about {
