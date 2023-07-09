@@ -29,7 +29,8 @@ def uploadFiles():
       print("UPLOAD PYTHON")
       #return "TESTIGN HELLO"
       url = "http://52.36.211.168/upload"
-      test_response = requests.post(url, files = {"file": request.files['file']})
+      headers = {" Access-Control-Allow-Origin":"*"}
+      test_response = requests.post(url, files = {"file": request.files['file']},headers)
 
       print(test_response.text)
       if test_response.ok:
