@@ -115,7 +115,7 @@
           downloadJSON(){
               console.log(this.data + "JSON")
               let text = JSON.stringify(this.data);
-              let filename = 'cats.json';
+              let filename = 'result.json';
               let element = document.createElement('a');
               element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
               element.setAttribute('download', filename);
