@@ -69,6 +69,8 @@
               const customHeader = {
                   headers: {
                   // Authorization: `Bearer ${getLocalStorageToken()}`,
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
                   "Content-Type": 'multipart/form-data',
                   },
               };
