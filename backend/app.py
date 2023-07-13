@@ -28,7 +28,7 @@ CORS(app, resources={r"/*": {"origins": allowed_origin}})
 def uploadFiles():
       print("UPLOAD PYTHON")
       #return "TESTIGN HELLO"
-      url = "http://34.220.179.169/upload"
+      url = "http://34.222.41.70/upload"
       #headers = {" Access-Control-Allow-Origin":"*"}
       test_response = requests.post(url, files = {"file": request.files['file']})
 
